@@ -28,7 +28,14 @@ import {
   UserPlus,
   UserRound,
 } from "lucide-react";
-import { API_URL, ApiError, authApi, dashboardApi, sessionStore } from "./services/api";
+import {
+  API_URL,
+  IS_STATIC_DEMO,
+  ApiError,
+  authApi,
+  dashboardApi,
+  sessionStore,
+} from "./services/api";
 
 const iconoMapa = L.icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
@@ -445,9 +452,15 @@ function Dashboard({ session, onUnauthorized, onLogout }) {
         </div>
 
         <nav className="topActions" aria-label="Acciones principales">
-          <a href={`${API_URL}/docs`} target="_blank" rel="noreferrer">
-            API Docs
-          </a>
+          {IS_STATIC_DEMO ? (
+            <a href="https://github.com/gianfrancorossell13-bot/WEBPAGE-" target="_blank" rel="noreferrer">
+              Repo GitHub
+            </a>
+          ) : (
+            <a href={`${API_URL}/docs`} target="_blank" rel="noreferrer">
+              API Docs
+            </a>
+          )}
           <div className="userBadge">
             <UserRound size={16} />
             <span>{session.user?.nombre}</span>
