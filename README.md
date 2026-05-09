@@ -144,6 +144,30 @@ La web estara en:
 http://localhost:5173
 ```
 
+## Desplegar en Render
+
+El repo incluye `render.yaml` para crear dos servicios desde GitHub:
+
+- `guardian-ciudadano-peru-api`: backend FastAPI.
+- `guardian-ciudadano-peru-web`: frontend React/Vite.
+
+Si Render ya esta vinculado con este GitHub, al recibir el commit de `main` puede desplegar automaticamente. Si aun no aparece, en Render usa `New > Blueprint`, selecciona el repo `WEBPAGE-` y confirma el archivo `render.yaml`.
+
+URLs esperadas:
+
+```text
+Frontend: https://guardian-ciudadano-peru-web.onrender.com
+Backend:  https://guardian-ciudadano-peru-api.onrender.com
+Docs API: https://guardian-ciudadano-peru-api.onrender.com/docs
+```
+
+El login inicial sigue siendo:
+
+```text
+Correo: analista@guardian.pe
+Contrasena: Guardian2026!
+```
+
 ## Verificaciones recomendadas
 
 Backend:

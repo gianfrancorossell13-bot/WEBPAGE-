@@ -1,3 +1,5 @@
+import os
+
 from fastapi import Depends, FastAPI, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
@@ -42,12 +44,23 @@ app = FastAPI(
     version="2.0.0",
 )
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
+
+def obtener_origenes_cors() -> list[str]:
+    origenes_base = [
         "http://localhost:5173",
         "http://127.0.0.1:5173",
-    ],
+        "https://guardian-ciudadano-peru-web.onrender.com",
+        "https://gianfrancorossell13-bot.github.io",
+    ]
+    origenes_extra = os.getenv("GUARDIAN_CORS_ORIGINS", "")
+    origenes = [*origenes_base, *origenes_extra.split(",")]
+
+    return list(dict.fromkeys(origen.strip().rstrip("/") for origen in origenes if origen.strip()))
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=obtener_origenes_cors(),
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Authorization", "Content-Type"],
