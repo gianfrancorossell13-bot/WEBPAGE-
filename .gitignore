@@ -1,0 +1,7 @@
+backend/.env
+backend/.venv/
+backend/guardian.db
+backend/app/__pycache__/
+frontend/node_modules/
+frontend/dist/
+*.pyc
