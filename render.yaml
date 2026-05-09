@@ -22,8 +22,9 @@ services:
       - key: GUARDIAN_CORS_ORIGINS
         value: "https://guardian-ciudadano-peru-web.onrender.com,https://gianfrancorossell13-bot.github.io"
 
-  - type: static
+  - type: web
     name: guardian-ciudadano-peru-web
+    runtime: static
     rootDir: frontend
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
